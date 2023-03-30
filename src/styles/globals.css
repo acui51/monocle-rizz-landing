@@ -1,15 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
+    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 
-  --primary-glow: conic-gradient(
+  /* --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
     #16abff33 0deg,
     #0885ff33 55deg,
@@ -20,7 +24,26 @@
   --secondary-glow: radial-gradient(
     rgba(255, 255, 255, 1),
     rgba(255, 255, 255, 0)
+  ); */
+
+  --primary-glow: conic-gradient(
+    from 180deg at 50% 50%,
+    #3a1534 0deg,
+    #28102c 55deg,
+    #260e2a 120deg,
+    #3c1535 160deg,
+    transparent 360deg
   );
+  --secondary-glow: radial-gradient(
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  );
+
+  --colors-plumA3: hsl(300 99.4% 67.1% / 0.102);
+  --colors-orangeA8: hsl(24 100% 49.9% / 0.523);
+  --colors-pinkA8: hsl(322 99.7% 55.4% / 0.608);
+  --colors-violetA8: hsl(250 99.7% 66.1% / 0.733);
+  /* --colors-violetA8: rgba(1, 65, 255, 0) */
 
   --tile-start-rgb: 239, 245, 249;
   --tile-end-rgb: 228, 232, 233;
@@ -46,13 +69,33 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
 
-    --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
+    /* --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
+    --secondary-glow: linear-gradient(
+      to bottom right,
+      rgba(1, 65, 255, 0),
+      rgba(1, 65, 255, 0),
+      rgba(1, 65, 255, 0.3)
+    ); */
+
+    --primary-glow: conic-gradient(
+      from 180deg at 50% 50%,
+      #3a1534 0deg,
+      #28102c 55deg,
+      #260e2a 120deg,
+      #3c1535 160deg,
+      transparent 360deg
+    );
     --secondary-glow: linear-gradient(
       to bottom right,
       rgba(1, 65, 255, 0),
       rgba(1, 65, 255, 0),
       rgba(1, 65, 255, 0.3)
     );
+
+    /* --colors-plumA3: hsl(300 99.4% 67.1% / 0.102);
+  --colors-orangeA8: hsl(24 100% 49.9% / 0.523);
+  --colors-pinkA8: hsl(322 99.7% 55.4% / 0.608);
+  --colors-violetA8: hsl(250 99.7% 66.1% / 0.733); */
 
     --tile-start-rgb: 2, 13, 46;
     --tile-end-rgb: 2, 5, 19;

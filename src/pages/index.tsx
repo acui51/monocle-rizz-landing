@@ -1,11 +1,16 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import { Inter } from "next/font/google";
+import styles from "@/styles/Home.module.css";
+import { useState } from "react";
+import { useIsMobile } from "@/utils/responsive";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [value, setValue] = useState("");
+  const isMobile = useIsMobile();
+
   return (
     <>
       <Head>
@@ -14,53 +19,61 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <main className={`${styles.main} ${inter.className}`}>
         <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
+          <p>rizzGPT</p>
         </div>
 
         <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
+          <div
+            style={{ position: "relative", top: "-64px" }}
+            className={isMobile ? `` : `right-32`}
+          >
+            <div
+              style={{
+                position: "relative",
+                top: isMobile ? "0px" : "32px",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Image
+                src="/monocle-mock.png"
+                alt="monocle-mock"
+                className="contrast-150 brightness-95 opacity-75"
+                // 1.78
+                width={isMobile ? 1068 : 445}
+                height={isMobile ? 700 : 250}
+                style={{ maxWidth: isMobile ? "175%" : "100%" }}
+                priority
+              />
+            </div>
+            {!isMobile && (
+              <Image
+                src="/monocle-mock-2.png"
+                alt="monocle-mock-2"
+                className={`contrast-150 brightness-95 opacity-80 relative bottom-8 ${
+                  isMobile ? "left-32" : "left-64"
+                }`}
+                // 1.78
+                width={isMobile ? 890 : 445}
+                height={isMobile ? 500 : 250}
+                priority
+              />
+            )}
           </div>
         </div>
 
-        <div className={styles.grid}>
-          <a
+        <div className={styles.waitlist}>
+          <div className="mb-2">Join waitlist</div>
+          <input
+            type="text"
+            value={value}
+            placeholder="Enter your email"
+            className={`rounded-xl bg-transparent text-white px-3 py-2 ${styles.inputGlow}`}
+            onChange={(e) => setValue(e.currentTarget.value)}
+          />
+          {/* <a
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             className={styles.card}
             target="_blank"
@@ -115,9 +128,9 @@ export default function Home() {
               Instantly deploy your Next.js site to a shareable URL
               with&nbsp;Vercel.
             </p>
-          </a>
+          </a> */}
         </div>
       </main>
     </>
-  )
+  );
 }
