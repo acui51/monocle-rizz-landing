@@ -48,7 +48,9 @@ export default function Home() {
               <Image
                 src="/monocle-mock.png"
                 alt="monocle-mock"
-                className="contrast-150 brightness-95 opacity-75"
+                className={`contrast-150 brightness-95 opacity-75 ${
+                  isMobile ? "" : "-rotate-25"
+                }`}
                 // 1.78
                 width={isMobile ? 1068 : 445}
                 height={isMobile ? 700 : 250}
