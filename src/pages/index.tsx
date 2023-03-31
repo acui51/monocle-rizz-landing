@@ -19,12 +19,20 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
+      <main className={`${styles.main} ${inter.className} relative`}>
         <div className={styles.description}>
           <p>rizzGPT</p>
         </div>
 
-        <div className={styles.center}>
+        <div
+          className={styles.center}
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
           <div
             style={{ position: "relative", top: "-64px" }}
             className={isMobile ? `` : `right-32`}
