@@ -9,7 +9,24 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [value, setValue] = useState("");
+  const [message, setMessage] = useState({ message: "", status: "" });
   const isMobile = useIsMobile();
+
+  const onFinish = async (e: any) => {
+    e.preventDefault();
+    const res = await fetch("/api/waitlist", {
+      body: JSON.stringify({ email: value }),
+      method: "POST",
+    });
+
+    const resJson = await res.json();
+
+    if (res.status === 500) {
+      setMessage({ message: resJson.message, status: "error" });
+    } else {
+      setMessage({ message: resJson.message, status: "success" });
+    }
+  };
 
   return (
     <>
@@ -76,13 +93,32 @@ export default function Home() {
 
         <div className={styles.waitlist}>
           <div className="mb-2">Join waitlist</div>
-          <input
-            type="text"
-            value={value}
-            placeholder="Enter your email"
-            className={`rounded-xl bg-transparent text-white px-3 py-2 ${styles.inputGlow}`}
-            onChange={(e) => setValue(e.currentTarget.value)}
-          />
+          <div className="flex">
+            <form onSubmit={onFinish}>
+              <input
+                type="email"
+                value={value}
+                placeholder="Enter your email"
+                className={`rounded-xl bg-transparent text-white px-3 py-2 ${styles.inputGlow}`}
+                onChange={(e) => setValue(e.currentTarget.value)}
+              />
+              <input
+                type="submit"
+                value="Go"
+                className="ml-4 h-full cursor-pointer border-b-[#210D21] border-b-2"
+              />
+            </form>
+          </div>
+          {message?.status === "success" && (
+            <span style={{ color: "#53C31B" }} className={inter.className}>
+              {message.message}
+            </span>
+          )}
+          {message?.status === "error" && (
+            <span style={{ color: "#FF4D4E" }} className={inter.className}>
+              {message.message}
+            </span>
+          )}
           {/* <a
             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             className={styles.card}
